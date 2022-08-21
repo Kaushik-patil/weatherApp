@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-// import axios
+
 import axios from 'axios';
 
-// import icons
+
 import {
   IoMdSunny,
   IoMdRainy,
@@ -25,7 +25,7 @@ import {
 import { TbTemperatureCelsius } from 'react-icons/tb';
 import { ImSpinner8 } from 'react-icons/im';
 
-// api key
+
 const APIkey = '92e5dc73c8272810ca310c28fb83940f';
 
 const App = () => {
@@ -47,29 +47,28 @@ const App = () => {
       setLocation(inputValue);
     }
 
-    // select input
+  
     const input = document.querySelector('input');
 
-    // if input value is empty
     if (input.value === '') {
-      // set animate to true
+     
       setAnimate(true);
-      // after 500 ms set animate to false
+     
       setTimeout(() => {
         setAnimate(false);
       }, 500);
     }
 
-    // clear input
+    
     input.value = '';
 
-    // prevent defaults
+  
     e.preventDefault();
   };
 
-  // fetch the data
+  
   useEffect(() => {
-    // set loading to true
+ 
     setLoading(true);
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${APIkey}`;
@@ -90,16 +89,15 @@ const App = () => {
       });
   }, [location]);
 
-  // error message
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setErrorMsg('');
     }, 2000);
-    // clear timer
+   
     return () => clearTimeout(timer);
   }, [errorMsg]);
 
-  // if data is false show the loader
   if (!data) {
     return (
       <div className='w-full h-screen bg-gradientBg bg-no-repeat bg-cover bg-center flex flex-col justify-center items-center'>
@@ -110,7 +108,7 @@ const App = () => {
     );
   }
 
-  // set the icon according to the weather
+ 
   let icon;
 
   switch (data.weather[0].main) {
@@ -137,7 +135,7 @@ const App = () => {
       break;
   }
 
-  // date object
+
   const date = new Date();
 
   return (
